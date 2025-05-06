@@ -1,7 +1,6 @@
 package com.rvneto.casadocodigo.domain.model;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +9,6 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@Builder
 public class Autor {
 
     @Id
@@ -26,4 +24,10 @@ public class Autor {
 
     private LocalDateTime dthRegistro;
 
+    public Autor(String nome, String email, String descricao) {
+        this.nome = nome;
+        this.email = email;
+        this.descricao = descricao;
+        this.dthRegistro = LocalDateTime.now();
+    }
 }

@@ -7,8 +7,6 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 public class AutorRequest {
@@ -25,12 +23,7 @@ public class AutorRequest {
     private String descricao;
 
     public Autor toModel() {
-        return Autor.builder()
-                .nome(this.nome)
-                .descricao(this.nome)
-                .email(this.email)
-                .dthRegistro(LocalDateTime.now())
-                .build();
+        return new Autor(this.nome, this.email, this.email);
     }
 
 }
