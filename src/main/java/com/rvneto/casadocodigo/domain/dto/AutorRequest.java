@@ -1,5 +1,6 @@
 package com.rvneto.casadocodigo.domain.dto;
 
+import com.rvneto.casadocodigo.domain.model.Autor;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -20,5 +21,13 @@ public class AutorRequest {
     @NotBlank(message = "Descrição é obrigatório")
     @Size(max = 400, message = "A descrição deve conter no máximo 400 caracteres")
     private String descricao;
+
+    public Autor toModel() {
+        return Autor.builder()
+                .nome(this.nome)
+                .descricao(this.nome)
+                .email(this.email)
+                .build();
+    }
 
 }
