@@ -6,6 +6,7 @@ import com.rvneto.casadocodigo.domain.model.Categoria;
 import com.rvneto.casadocodigo.domain.model.Livro;
 import com.rvneto.casadocodigo.repository.AutorRepository;
 import com.rvneto.casadocodigo.repository.CategoriaRepository;
+import com.rvneto.casadocodigo.repository.LivroRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -14,6 +15,8 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/livro")
@@ -28,6 +31,9 @@ public class LivroController {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
+    @Autowired
+    private LivroRepository livroRepository;
+
     @PostMapping
     @Transactional
     @ResponseStatus(HttpStatus.OK)
@@ -37,6 +43,13 @@ public class LivroController {
         Categoria categoria = categoriaRepository.buscarPorDescricao(manager, request.getCategoria());
         livro.atualizaAutorECategoria(autor, categoria);
         manager.persist(livro);
+    }
+
+    @GetMapping
+    @Transactional
+    @ResponseStatus(HttpStatus.OK)
+    public List<Livro> buscar() {
+        return livroRepository.buscar(manager);
     }
 
 }

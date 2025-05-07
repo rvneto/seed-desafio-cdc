@@ -1,9 +1,7 @@
 package com.rvneto.casadocodigo.domain.model;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.apache.coyote.BadRequestException;
 
 import java.time.LocalDate;
@@ -14,6 +12,8 @@ import static java.util.Objects.isNull;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Livro {
 
     @Id
